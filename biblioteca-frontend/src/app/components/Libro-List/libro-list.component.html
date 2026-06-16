@@ -1,0 +1,78 @@
+<div class="libro-list-container">
+  <div class="header-acciones">
+    <button class="btn-crear" (click)="abrirModalCrear()">
+      <span class="icono">➕</span> Nuevo Libro
+    </button>
+  </div>
+
+  
+
+<div class="libro-list-container">
+  <div class="cargando" *ngIf="cargando">
+    <div class="spinner"></div>
+    <p>Cargando libros...</p>
+  </div>
+
+  <div *ngIf="!cargando && libros.length === 0" class="sin-libros">
+    No hay libros registrados todavía.
+  </div>
+
+  <div class="tabla-container" *ngIf="libros.length > 0">
+    <table class="biblioteca-tabla">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>Año</th>
+          <th>Género</th>
+          <th>Disponibilidad</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let libro of librosPaginados; let i = index"
+        class="fila-clickeable"
+          (click)="abrirModalVer(libro)">
+          <td>{{ ((paginaActual - 1) * elementosPorPagina) + i + 1 }}</td>
+          <td class="titulo">{{ libro.titulo }}</td>
+          <td>{{ libro.autor }}</td>
+          <td class="anio">{{ libro.publicacion || '-' }}</td>
+          <td>{{ libro.genero || '-' }}</td>
+          <td>
+            <span class="disponibilidad" [class.disponible]="libro.disponibilidad" [class.no-disponible]="!libro.disponibilidad">
+              {{ libro.disponibilidad ? 'Disponible' : 'No Disponible' }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="paginacion" *ngIf="totalPaginas > 1">
+      <button class="btn-paginacion" [class.deshabilitado]="paginaActual === 1"
+        (click)="paginaAnterior()" [disabled]="paginaActual === 1">
+        ← Anterior
+      </button>
+
+      <div class="numeros-pagina">
+        <button *ngFor="let pagina of paginas" class="btn-numero"
+          [class.activo]="pagina === paginaActual" (click)="cambiarPagina(pagina)">
+          {{ pagina }}
+        </button>
+      </div>
+
+      <button class="btn-paginacion" [class.deshabilitado]="paginaActual === totalPaginas"
+        (click)="siguientePagina()" [disabled]="paginaActual === totalPaginas">
+        Siguiente →
+      </button>
+    </div>
+  </div>
+</div>
+
+<app-libro-modal 
+  *ngIf="mostrarModal"
+  [libro]="libroSeleccionado"
+  [modo]="modoModal"
+  (guardar)="guardarLibro($event)"
+  (eliminar)="eliminarLibro($event)"
+  (cerrar)="cerrarModal()">
+</app-libro-modal>

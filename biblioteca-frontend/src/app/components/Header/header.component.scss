@@ -1,0 +1,64 @@
+.app-header {
+  background: linear-gradient(135deg, #4324d5 0%, #0a0a0a 100%);
+  border-bottom: 2px solid #000068;
+  padding: 1rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo h1 {
+  color: #000000;
+  margin: 0;
+  font-size: 2em;
+  text-shadow: 0 0 10px rgba(187, 134, 252, 0.3);
+}
+
+.nav-menu ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: #e0e0e0;
+  text-decoration: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.nav-menu a:hover {
+  background: #2d2d2d;
+  color: #bb86fc;
+}
+
+.nav-menu a.activo {
+  background: #bb86fc;
+  color: #0a0a0a;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+  
+  .nav-menu ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

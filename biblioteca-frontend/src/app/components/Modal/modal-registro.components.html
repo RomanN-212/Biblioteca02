@@ -1,0 +1,127 @@
+<div class="modal-overlay" (click)="onCerrar()">
+  <div class="modal-contenido" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ tituloModal }}</h2>
+      <button class="btn-cerrar" (click)="onCerrar()">×</button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" #libroForm="ngForm">
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="titulo">
+            Título <span class="requerido" *ngIf="!esSoloLectura">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="titulo" 
+            name="titulo"
+            [(ngModel)]="libroEditando.titulo" 
+            [readonly]="esSoloLectura"
+            [class.modo-lectura]="esSoloLectura"
+            placeholder="Ej: Cien años de soledad"
+            [required]="!esSoloLectura"
+            #tituloInput="ngModel">
+          <div class="error-mensaje" *ngIf="tituloInput.invalid && tituloInput.touched && !esSoloLectura">
+            El título es requerido
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="autor">
+            Autor <span class="requerido" *ngIf="!esSoloLectura">*</span>
+          </label>
+          <input 
+            type="text" 
+            id="autor" 
+            name="autor"
+            [(ngModel)]="libroEditando.autor" 
+            [readonly]="esSoloLectura"
+            [class.modo-lectura]="esSoloLectura"
+            placeholder="Ej: Gabriel García Márquez"
+            [required]="!esSoloLectura"
+            #autorInput="ngModel">
+          <div class="error-mensaje" *ngIf="autorInput.invalid && autorInput.touched && !esSoloLectura">
+            El autor es requerido
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="publicacion">Año de Publicación</label>
+          <input 
+            type="number" 
+            id="publicacion" 
+            name="publicacion"
+            [(ngModel)]="libroEditando.publicacion" 
+            [readonly]="esSoloLectura"
+            [class.modo-lectura]="esSoloLectura"
+            placeholder="Ej: 1967"
+            min="1000" 
+            max="2026">
+        </div>
+
+        <div class="form-group">
+          <label for="genero">Género</label>
+          <input 
+            type="text" 
+            id="genero" 
+            name="genero"
+            [(ngModel)]="libroEditando.genero" 
+            [readonly]="esSoloLectura"
+            [class.modo-lectura]="esSoloLectura"
+            placeholder="Ej: Realismo mágico">
+        </div>
+
+        <div class="form-group checkbox">
+          <label>
+            <input 
+              type="checkbox" 
+              name="disponibilidad"
+              [(ngModel)]="libroEditando.disponibilidad" 
+              [disabled]="esSoloLectura">
+            Disponible para préstamo
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <ng-container *ngIf="mostrandoVer">
+          <div style="display: flex; gap: 10px; width: 100%;">
+    <button type="button" class="btn-peligro" (click)="onEliminar()">
+      🗑️ Eliminar
+    </button>
+    
+    <div style="flex: 1;"></div>
+          <button type="button" class="btn-secundario" (click)="onCerrar()">
+            Cerrar
+          </button>
+          <button type="button" class="btn-primario" (click)="activarEdicion()">
+            ✏️ Editar
+          </button>
+
+        </div>
+        </ng-container>
+
+        <ng-container *ngIf="mostrandoEditar">
+          <button type="button" class="btn-secundario" (click)="cancelarEdicion()">
+            Cancelar
+          </button>
+
+          <button type="submit" class="btn-primario" [disabled]="libroForm.invalid">
+            💾 Guardar Cambios
+          </button>
+
+
+        </ng-container>
+
+        <ng-container *ngIf="mostrandoCrear">
+          <button type="button" class="btn-secundario" (click)="onCerrar()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn-primario" [disabled]="libroForm.invalid">
+            ✅ Crear Libro
+          </button>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+</div>

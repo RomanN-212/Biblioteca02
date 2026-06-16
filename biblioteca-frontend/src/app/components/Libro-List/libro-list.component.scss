@@ -1,0 +1,219 @@
+.libro-list-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.tabla-container {
+  border-radius: 15px;
+  padding: 20px;
+  background-color: transparent;
+  overflow-x: auto;
+}
+
+.biblioteca-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  color: #e0e0e0;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+}
+
+.biblioteca-tabla th {
+  background: #060212;
+  color: #6d9788;
+  font-weight: 500;
+  padding: 15px 10px;
+  text-align: left;
+  border-bottom: 2px solid #7a7a7a;
+  font-size: 1.1em;
+  letter-spacing: 1px;
+}
+
+.biblioteca-tabla td {
+  padding: 12px 10px;
+  border-bottom: 1px solid #333;
+}
+
+.biblioteca-tabla tbody tr:hover {
+  background: #2a2a2a;
+  transition: background 0.3s ease;
+}
+
+.titulo {
+  font-weight: 500;
+  color: #fff;
+}
+
+.anio {
+  font-family: monospace;
+  color: #03dac6;
+}
+
+.disponibilidad {
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.disponible {
+  background: #108009;
+  color: #03dac6;
+  border: 1px solid #03dac6;
+}
+
+.no-disponible {
+  background: #85140d;
+  color: #cf6679;
+  border: 1px solid #cf6679;
+}
+
+/* Estilos de paginación */
+.paginacion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.btn-paginacion {
+  background: #2d2d2d;
+  color: #e0e0e0;
+  border: 1px solid #404040;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+  min-width: 100px;
+}
+
+.btn-paginacion:hover:not(:disabled) {
+  background: #404040;
+  border-color: #bb86fc;
+  color: #bb86fc;
+}
+
+.btn-paginacion:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.numeros-pagina {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-numero {
+  background: #2d2d2d;
+  color: #e0e0e0;
+  border: 1px solid #404040;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-numero:hover:not(.activo) {
+  background: #404040;
+  border-color: #bb86fc;
+  color: #bb86fc;
+}
+
+.btn-numero.activo {
+  background: #bb86fc;
+  color: #0a0a0a;
+  border-color: #bb86fc;
+  font-weight: bold;
+}
+
+.info-paginacion {
+  text-align: center;
+  margin-top: 20px;
+  color: #888;
+  font-size: 0.95em;
+}
+
+/* Estados */
+.cargando {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  color: #bb86fc;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid #333;
+  border-top: 3px solid #bb86fc;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.sin-libros {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #1a1a1a;
+  border-radius: 15px;
+  color: #888;
+  font-size: 1.3em;
+  border: 2px dashed #333;
+}
+
+.header-acciones {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.btn-crear {
+  background: transparent;
+  color: #bb86fc;
+  border: 1.5px solid #bb86fc;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: 0.3px;
+  
+  .icono {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+  
+  &:hover {
+    background: rgba(187, 134, 252, 0.08);
+    border-color: #d0a0ff;
+    color: #d0a0ff;
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+    background: rgba(187, 134, 252, 0.15);
+  }
+}
