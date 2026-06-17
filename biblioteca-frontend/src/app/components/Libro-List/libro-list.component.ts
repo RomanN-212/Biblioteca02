@@ -185,24 +185,15 @@ actualizarLibro(libroForm: LibroFormData) {
   }
 }
 
-
-
-
-
-
-// Agrega este método
 eliminarLibro(id: number) {
   console.log('🗑️ Eliminando libro ID:', id);
   
   this.apiService.deleteLibro(id).subscribe({
     next: () => {
-      // Eliminar del array
       this.libros = this.libros.filter(l => l.id !== id);
       
-      // Recalcular paginación
       this.totalPaginas = Math.ceil(this.libros.length / this.elementosPorPagina);
       
-      // Si la página actual se queda vacía, retroceder una página
       if (this.paginaActual > this.totalPaginas) {
         this.paginaActual = this.totalPaginas || 1;
       }

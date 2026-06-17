@@ -20,7 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-// routes/api.php
 Route::get('/libros', [LibroController::class, 'index']);
 Route::post('/libros', [LibroController::class, 'store']);
 Route::put('/libros/{id}', [LibroController::class, 'update']);
